@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book a Tour | Lovoni Tours</title>
+</head>
+
+<body style="margin:0; font-family:Arial;">
+
+<!-- NAV -->
+<div style="padding:20px; background:#114b3c; color:white;">
+    <b>LOVONI TOURS</b>
+
+    <span style="float:right;">
+        <a href="index.html" style="color:white; margin-right:10px;">Home</a>
+        <a href="about.html" style="color:white; margin-right:10px;">About</a>
+        <a href="tours.html" style="color:white; margin-right:10px;">Tours</a>
+        <a href="booking.html" style="color:white;">Book</a>
+    </span>
+</div>
+
+<!-- HEADER -->
+<div style="padding:40px; text-align:center; background:#f4f4f4;">
+    <h1>Book Your Tour</h1>
+    <p>Select your tour and see price instantly</p>
+</div>
+
+<!-- FORM -->
+<div style="max-width:500px; margin:auto; padding:40px;">
+
+    <label>Name</label><br>
+    <input id="name" type="text" style="width:100%; padding:10px; margin-bottom:10px;"><br>
+
+    <label>Email</label><br>
+    <input id="email" type="email" style="width:100%; padding:10px; margin-bottom:10px;"><br>
+
+    <label>Choose Tour</label><br>
+    <select id="tour" onchange="calcPrice()" style="width:100%; padding:10px; margin-bottom:10px;">
+        <option value="120">Crater Adventure (FJD 120)</option>
+        <option value="60">Village Experience (FJD 60)</option>
+        <option value="90">Cultural Tour (FJD 90)</option>
+    </select><br>
+
+    <label>Number of People</label><br>
+    <input id="people" type="number" value="1" min="1" onchange="calcPrice()"
+    style="width:100%; padding:10px; margin-bottom:10px;"><br>
+
+    <h3>Total: FJD <span id="total">0</span></h3>
+
+    <button onclick="payNow()" 
+    style="width:100%; padding:15px; background:#D8A31A; border:none; font-weight:bold; cursor:pointer;">
+        Continue to Payment
+    </button>
+
+</div>
+
+<script>
+function calcPrice() {
+    let tourPrice = document.getElementById("tour").value;
+    let people = document.getElementById("people").value;
+
+    let total = tourPrice * people;
+
+    document.getElementById("total").innerText = total;
+}
+
+function payNow() {
+    let total = document.getElementById("total").innerText;
+
+    alert("Redirecting to payment... Total: FJD " + total);
+
+    // later we connect Stripe here
+}
+
+calcPrice();
+</script>
+
+</body>
+</html>
